@@ -1,0 +1,22 @@
+{
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$",
+    "^@/store/(.*)$",
+    "^@/styles/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/page/(.*)$",
+    "^@/utils/(.*)$",
+    "^../(.*)",
+    "^./(.*)",
+    "^@/assets/(.*)$",
+    "(.scss)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
