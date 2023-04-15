@@ -1,7 +1,6 @@
 .google_button {
   display: inline-block;
-
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   background-color: #fff;
   border: 2px solid #4285f4;
   color: #4285f4;
@@ -16,10 +15,7 @@
     margin-right: 10px;
     font-size: 22px;
   }
-  img {
-    vertical-align: middle;
-    margin-right: 1rem;
-  }
+
   &:hover {
     background-color: #4285f4;
     color: #fff;
