@@ -1,14 +1,18 @@
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase.config'
+import { ROUTES } from '../../utils/routes'
 import { useAuth } from '../hooks/use-auth'
 
 import styles from './CreateOrder.module.scss'
 
 const CreateOrder = () => {
   const { id } = useAuth()
+
+  const navigate = useNavigate()
 
   const [values, setValues] = useState({
     cityFirst: '',
@@ -27,6 +31,7 @@ const CreateOrder = () => {
         phone: values.phone,
         timeStamp: serverTimestamp()
       })
+      navigate(ROUTES.RETURN_ORDERS)
       setValues({
         ...values,
         cityFirst: '',

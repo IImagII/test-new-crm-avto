@@ -41,7 +41,7 @@ const ChangeOrder = () => {
   return (
     <div className="container">
       <div className="row">
-        <h2 className="text-center mb-5">SHOW ORDERS</h2>
+        <h2 className="text-center mb-5">CHANGE ORDERS</h2>
 
         <Table striped hover>
           <thead>

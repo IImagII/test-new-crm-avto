@@ -16,6 +16,7 @@ const useProvider = () => {
         console.log(user)
         dispatch(
           setUser({
+            userDisplay: user,
             email: user.email,
             id: user.uid
           })
@@ -33,6 +34,7 @@ const useProvider = () => {
         console.log(user)
         dispatch(
           setUser({
+            userDisplay: user,
             email: user.email,
             id: user.uid
           })

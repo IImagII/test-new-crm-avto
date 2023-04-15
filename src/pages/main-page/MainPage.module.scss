@@ -1,0 +1,35 @@
+.menu {
+  list-style: none;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  li {
+    overflow: hidden;
+    padding: 6px 10px;
+    font-size: 20px;
+    &:first-child {
+      font-weight: bold;
+      padding: 15px 0 10px 15px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      color: #679bb7;
+      font-size: 24px;
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+      &:before {
+        content: '\2749';
+        margin-right: 10px;
+      }
+    }
+  }
+  span {
+    float: left;
+    width: 75%;
+    color: #7c7d7f;
+  }
+  em {
+    float: right;
+    color: #9c836e;
+    font-weight: bold;
+  }
+}

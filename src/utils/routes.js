@@ -10,6 +10,7 @@ export const ROUTES = {
   CHANGE_ORDER: 'change-order',
   CHANGE_ORDER_ID: 'change-order/:id',
   SHOW_ORDER: 'show-order',
+  RETURN_ORDERS: '/home/show-order',
   LOGIN: '/login',
   REGISTER: '/registration',
   ABOUT: '/about',

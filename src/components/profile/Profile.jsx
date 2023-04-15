@@ -9,9 +9,10 @@ import { useValues } from '../hooks/use-values'
 import styles from './Profile.module.scss'
 
 const Profile = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState({})
+  console.log('🚀 ~ data2:', data)
   const [values, setValues] = useValues()
-  console.log('🚀 ~ values:', values)
+  console.log('🚀 ~ values:', values.name)
 
   const { id } = useAuth()
 
@@ -56,10 +57,25 @@ const Profile = () => {
     }
   }
 
+  if (data === undefined) {
+    return (
+      <>
+        <div className="container">
+          <div className="row">
+            <h1 className="text-center">
+              You have not entered information about yourself
+            </h1>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   return (
     <div className="container">
       <div className="row">
         <h1 className="text-center">PROFILE</h1>
+
         <div className={styles.position}>
           <div className={styles.root}>
             <form onSubmit={handleSubmit}>

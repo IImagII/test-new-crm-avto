@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { Alert, Button, Form } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import { FaFacebook } from 'react-icons/fa'
@@ -7,13 +7,11 @@ import { FcGoogle } from 'react-icons/fc'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { auth, provider, providerFacebook } from '../../firebase.config'
+import { auth } from '../../firebase.config'
 import { setUser } from '../../store/slice/userSlice'
 import { ROUTES } from '../../utils/routes'
 import useProvider from '../hooks/use-provider'
 import { useValues } from '../hooks/use-values'
-
-import styles from './AuthLogin.module.scss'
 
 const AuthLogin = () => {
   const [values, setValues] = useValues()
@@ -31,6 +29,7 @@ const AuthLogin = () => {
       .then(({ user }) => {
         dispatch(
           setUser({
+            userDisplay: user,
             email: user.email,
             id: user.uid
           })
@@ -89,22 +88,14 @@ const AuthLogin = () => {
           </Button>
         </div>
         <div className="d-grid mt-4">
-          <a
-            href="#"
-            className={styles.google_button}
-            onClick={handleAuthGoogle}
-          >
-            <FcGoogle className={styles.google_button_icon} />
+          <a href="#" className="provider_button" onClick={handleAuthGoogle}>
+            <FcGoogle className="provider_button_icon" />
             Sign in with google
           </a>
         </div>
         <div className="d-grid mt-2">
-          <a
-            href="#"
-            className={styles.google_button}
-            onClick={handleAuthFacebook}
-          >
-            <FaFacebook className={styles.google_button_icon} />
+          <a href="#" className="provider_button" onClick={handleAuthFacebook}>
+            <FaFacebook className="provider_button_icon" />
             Sign in with facebook
           </a>
         </div>
