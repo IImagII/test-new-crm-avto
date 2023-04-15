@@ -1,16 +1,14 @@
 import { useAuth } from '../../components/hooks/use-auth'
 import { useData } from '../../components/hooks/use-data'
+import useUserInfo from '../../components/hooks/use-userInfo'
 import { calcTotalPrice } from '../../utils/calcTotalCount'
 
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {
-  const {
-    userDisplay: { displayName: isNameDisplay },
-    userDisplay: { phoneNumber: isPhone },
-    isEmail
-  } = useAuth()
+  const { isEmail } = useAuth()
 
+  const { user } = useUserInfo()
   const { data } = useData()
 
   return (
@@ -18,23 +16,31 @@ const MainPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h1 className="text-center">
-              Welcome {isNameDisplay ? isNameDisplay : isEmail}
-            </h1>
+            <h1 className="text-center">Welcome {user.name} </h1>
             <ul class={styles.menu}>
               <li>Information about you</li>
               <li>
+                <span>Name for order</span>
+                <em>{user.name}</em>
+              </li>
+              <li>
+                <span>Lastname for order</span>
+                <em>{user.lastName}</em>
+              </li>
+              <li>
+                <span>Age</span>
+                <em>{user.age}</em>
+              </li>
+              <li>
                 <span>Your phone:</span>
                 <em>
-                  {isPhone ? (
-                    isPhone
-                  ) : (
+                  {
                     <div>
-                      {data.map((elem) => (
-                        <div>{elem.phone}</div>
+                      {data.map((elem, i) => (
+                        <div key={i}>{elem.phone}</div>
                       ))}
                     </div>
-                  )}
+                  }
                 </em>
               </li>
               <li>
@@ -50,8 +56,8 @@ const MainPage = () => {
                 <em>{isEmail}</em>
               </li>
               <li>
-                <span>"Морской"</span>
-                <em>450</em>
+                <span>Your Role</span>
+                <em>{user.role}</em>
               </li>
             </ul>
           </div>

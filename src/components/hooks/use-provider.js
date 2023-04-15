@@ -21,8 +21,8 @@ const useProvider = () => {
             id: user.uid
           })
         )
-        navigate(ROUTES.HOME_BODY)
       })
+      .then(() => navigate(ROUTES.ABOUT))
       .catch((err) => {
         alert(err.message)
       })
@@ -39,8 +39,8 @@ const useProvider = () => {
             id: user.uid
           })
         )
-        navigate(ROUTES.HOME_BODY)
       })
+      .then(() => navigate(ROUTES.ABOUT))
       .catch((err) => {
         alert(err.message)
       })

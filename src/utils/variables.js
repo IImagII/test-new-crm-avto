@@ -1,1 +1,1 @@
-export const ADMIN = 'lUYE0CQZtXgknJXgmM8LdhC0fXh1'
+export const ADMIN = 'rzMYRmZ39waGqjJTck49SixMRYw2'

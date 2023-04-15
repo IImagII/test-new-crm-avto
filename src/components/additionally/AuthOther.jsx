@@ -1,4 +1,4 @@
-import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 

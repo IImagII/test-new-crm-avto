@@ -6,15 +6,17 @@ import { TbExchange } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase.config'
+import { useAuth } from '../hooks/use-auth'
 import { useData } from '../hooks/use-data'
 
 const ChangeOrder = () => {
   const { data, setData } = useData()
   const navigate = useNavigate()
+  const { id: myId } = useAuth()
 
   const deleteClient = async (id) => {
     try {
-      await deleteDoc(doc(db, 'users', id))
+      await deleteDoc(doc(db, myId, id))
       setData(data.filter((elem) => elem.id !== id))
     } catch (e) {
       console.log(e)

@@ -15,7 +15,7 @@ import { db } from '../../firebase.config'
 import styles from './ClientManagement.module.scss'
 
 const ClientManagement = () => {
-  const options = ['driver', 'passenger']
+  const options = ['driver', 'passenger', 'supervisor']
 
   const [data, setData] = useState([])
 

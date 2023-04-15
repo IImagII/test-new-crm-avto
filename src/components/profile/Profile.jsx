@@ -1,48 +1,43 @@
-import { doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore'
-import React, { useEffect, useState } from 'react'
+import { doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase.config'
+import { ROUTES } from '../../utils/routes'
 import { useAuth } from '../hooks/use-auth'
+import useUserInfo from '../hooks/use-userInfo'
 import { useValues } from '../hooks/use-values'
 
 import styles from './Profile.module.scss'
 
 const Profile = () => {
-  const [data, setData] = useState({})
+  const { user, setUser } = useUserInfo()
 
   const [values, setValues] = useValues()
 
   const { id } = useAuth()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const docRef = doc(db, 'users', id)
-      const docSnap = await getDoc(docRef)
-
-      setData(docSnap.data())
-    }
-
-    fetchData()
-  }, [id])
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
       const fieldsToUpdate = {}
-      if (values.name !== data.name) {
+
+      if (values.name !== user.name && values.name !== '') {
         fieldsToUpdate.name = values.name
       }
-      if (values.lastName !== data.lastName) {
+      if (values.lastName !== user.lastName && values.lastName !== '') {
         fieldsToUpdate.lastName = values.lastName
       }
-      if (values.age !== data.age) {
+      if (values.age !== user.age && values.age !== '') {
         fieldsToUpdate.age = values.age
       }
-      if (values.gender !== data.gender) {
-        fieldsToUpdate.gender = values.gender
+      if (values.role !== user.role && values.role !== '') {
+        fieldsToUpdate.role = values.role
       }
+
       await updateDoc(
         doc(db, 'users', id),
         {
@@ -51,12 +46,13 @@ const Profile = () => {
         },
         { merge: true }
       )
+      navigate(ROUTES.HOME_BODY)
     } catch (e) {
-      console.error('Error adding document: ', e)
+      console.error('Error updating document: ', e)
     }
   }
 
-  if (data === undefined) {
+  if (user === undefined) {
     return (
       <>
         <div className="container">
@@ -86,7 +82,7 @@ const Profile = () => {
                   <input
                     type="text"
                     name="first-name"
-                    placeholder={data.name}
+                    placeholder={user.name}
                     value={values.name}
                     onChange={(e) =>
                       setValues({ ...values, name: e.target.value })
@@ -102,7 +98,7 @@ const Profile = () => {
                   <input
                     type="text"
                     name="last-name"
-                    placeholder={data.lastName}
+                    placeholder={user.lastName}
                     value={values.lastName}
                     onChange={(e) =>
                       setValues({ ...values, lastName: e.target.value })
@@ -117,8 +113,8 @@ const Profile = () => {
                 <div className={styles.col_75}>
                   <input
                     type="text"
-                    name="last-name"
-                    placeholder={data.age}
+                    name="age"
+                    placeholder={user.age}
                     value={values.age}
                     onChange={(e) =>
                       setValues({ ...values, age: e.target.value })
@@ -131,7 +127,7 @@ const Profile = () => {
                   <label>Role</label>
                 </div>
                 <div className={styles.col_75}>
-                  {data.role}
+                  {user.role}
                   <select
                     name="role"
                     value={values.role}

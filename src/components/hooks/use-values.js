@@ -6,7 +6,7 @@ export const useValues = () => {
     password: '',
     name: '',
     lastName: '',
-    age: 0,
+    age: '',
     role: ''
   })
 
