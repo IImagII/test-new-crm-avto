@@ -1,31 +1,9 @@
-import { collection, getDocs } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 
-import { db } from '../../firebase.config'
-import { useAuth } from '../hooks/use-auth'
+import { useData } from '../hooks/use-data'
 
 const ShowOrder = () => {
-  const [data, setData] = useState([])
-
-  const { id } = useAuth()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let list = []
-      try {
-        const queryData = await getDocs(collection(db, id))
-        queryData.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() })
-        })
-        setData(list)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    fetchData()
-  }, [id])
+  const { data } = useData()
 
   return (
     <div className="container">

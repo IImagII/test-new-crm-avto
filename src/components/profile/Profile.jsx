@@ -10,9 +10,8 @@ import styles from './Profile.module.scss'
 
 const Profile = () => {
   const [data, setData] = useState({})
-  console.log('🚀 ~ data2:', data)
+
   const [values, setValues] = useValues()
-  console.log('🚀 ~ values:', values.name)
 
   const { id } = useAuth()
 

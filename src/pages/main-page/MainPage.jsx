@@ -1,8 +1,5 @@
-import { collection, getDocs } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
-
 import { useAuth } from '../../components/hooks/use-auth'
-import { db } from '../../firebase.config'
+import { useData } from '../../components/hooks/use-data'
 import { calcTotalPrice } from '../../utils/calcTotalCount'
 
 import styles from './MainPage.module.scss'
@@ -11,29 +8,10 @@ const MainPage = () => {
   const {
     userDisplay: { displayName: isNameDisplay },
     userDisplay: { phoneNumber: isPhone },
-    isEmail,
-    id
+    isEmail
   } = useAuth()
 
-  const [data, setData] = useState([])
-  console.log('🚀 ~ data:', data)
-
-  const fetchData = async () => {
-    let list = []
-    try {
-      const queryData = await getDocs(collection(db, id))
-      queryData.forEach((doc) => {
-        list.push({ id: doc.id, ...doc.data() })
-      })
-      setData(list)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const { data } = useData()
 
   return (
     <>

@@ -1,34 +1,16 @@
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
-import React, { useEffect, useState } from 'react'
+import { deleteDoc, doc } from 'firebase/firestore'
+import React from 'react'
 import { Table } from 'react-bootstrap'
 import { AiOutlineClose } from 'react-icons/ai'
 import { TbExchange } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase.config'
-import { useAuth } from '../hooks/use-auth'
+import { useData } from '../hooks/use-data'
 
 const ChangeOrder = () => {
-  const [data, setData] = useState([])
+  const { data, setData } = useData()
   const navigate = useNavigate()
-  const { id } = useAuth()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let list = []
-      try {
-        const queryData = await getDocs(collection(db, id))
-        queryData.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() })
-        })
-        setData(list)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    fetchData()
-  }, [id])
 
   const deleteClient = async (id) => {
     try {
