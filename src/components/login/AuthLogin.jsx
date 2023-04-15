@@ -29,7 +29,7 @@ const AuthLogin = () => {
       .then(({ user }) => {
         dispatch(
           setUser({
-            userDisplay: user,
+       
             email: user.email,
             id: user.uid
           })

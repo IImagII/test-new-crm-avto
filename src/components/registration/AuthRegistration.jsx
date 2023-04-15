@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Button, Form } from 'react-bootstrap'
+import { FaFacebook } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { auth } from '../../firebase.config'
 import { setUser } from '../../store/slice/userSlice'
 import { ROUTES } from '../../utils/routes'
+import useProvider from '../hooks/use-provider'
 import { useValues } from '../hooks/use-values'
 
 const AuthRegistration = () => {
@@ -15,6 +18,8 @@ const AuthRegistration = () => {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+
+  const { handleAuthGoogle, handleAuthFacebook } = useProvider()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -80,6 +85,18 @@ const AuthRegistration = () => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+        </div>
+        <div className="d-grid mt-4">
+          <a href="#" className="provider_button" onClick={handleAuthGoogle}>
+            <FcGoogle className="provider_button_icon" />
+            Sign in with google
+          </a>
+        </div>
+        <div className="d-grid mt-2">
+          <a href="#" className="provider_button" onClick={handleAuthFacebook}>
+            <FaFacebook className="provider_button_icon" />
+            Sign in with facebook
+          </a>
         </div>
       </Form>
     </div>

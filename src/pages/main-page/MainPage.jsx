@@ -17,7 +17,7 @@ const MainPage = () => {
         <div className="row">
           <div className="col-12">
             <h1 className="text-center">Welcome {user.name} </h1>
-            <ul class={styles.menu}>
+            <ul className={styles.menu}>
               <li>Information about you</li>
               <li>
                 <span>Name for order</span>

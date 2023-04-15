@@ -13,15 +13,15 @@ const useProvider = () => {
   const handleAuthGoogle = () => {
     signInWithPopup(auth, provider)
       .then(({ user }) => {
-        console.log(user)
         dispatch(
           setUser({
-            userDisplay: user,
             email: user.email,
             id: user.uid
           })
         )
+        console.log(user.id)
       })
+
       .then(() => navigate(ROUTES.ABOUT))
       .catch((err) => {
         alert(err.message)
@@ -31,10 +31,8 @@ const useProvider = () => {
   const handleAuthFacebook = () => {
     signInWithPopup(auth, providerFacebook)
       .then(({ user }) => {
-        console.log(user)
         dispatch(
           setUser({
-            userDisplay: user,
             email: user.email,
             id: user.uid
           })
