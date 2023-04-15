@@ -25,8 +25,7 @@ const AuthRegistration = () => {
           dispatch(
             setUser({
               email: user.email,
-              id: user.uid,
-              token: user.accessToken
+              id: user.uid
             })
           )
           navigate(ROUTES.ABOUT)

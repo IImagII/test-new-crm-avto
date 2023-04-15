@@ -1,13 +1,17 @@
-import { signInWithEmailAndPassword } from 'firebase/auth'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { Alert, Button, Form } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
+import { FcGoogle } from 'react-icons/fc'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { auth } from '../../firebase.config'
+import { auth, provider } from '../../firebase.config'
 import { setUser } from '../../store/slice/userSlice'
 import { ROUTES } from '../../utils/routes'
 import { useValues } from '../hooks/use-values'
+
+import styles from './AuthLogin.module.scss'
 
 const AuthLogin = () => {
   const [values, setValues] = useValues()
@@ -24,8 +28,7 @@ const AuthLogin = () => {
         dispatch(
           setUser({
             email: user.email,
-            id: user.uid,
-            token: user.accessToken
+            id: user.uid
           })
         )
         navigate(ROUTES.HOME_BODY)
@@ -36,6 +39,22 @@ const AuthLogin = () => {
           <Alert variant="danger">Invalid user!</Alert>,
           document.getElementById('alert')
         )
+      })
+  }
+
+  const handleAuthGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then(({ user }) => {
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid
+          })
+        )
+        navigate(ROUTES.HOME_BODY)
+      })
+      .catch((err) => {
+        alert(err.message)
       })
   }
 
@@ -78,8 +97,14 @@ const AuthLogin = () => {
         </div>
         <div className="d-grid gap-2 ">
           <Button variant="primary" type="submit">
-            Submit
+            Sing in
           </Button>
+        </div>
+        <div className="d-grid mt-4">
+          <a href="#" class={styles.google_button} onClick={handleAuthGoogle}>
+            <FcGoogle className={styles.google_button_icon} />
+            Sign in with google
+          </a>
         </div>
       </Form>
       <div id="alert"></div>
