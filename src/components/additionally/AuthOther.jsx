@@ -16,11 +16,14 @@ import { useValues } from '../hooks/use-values'
 
 const AuthOther = () => {
   const [values, setValues] = useValues()
+  console.log('🚀 ~ values:', values)
   const [isLoading, setIsLoading] = useState(true)
 
   const [isCheckingUser, setIsCheckingUser] = useState(true)
 
   const { isEmail, id } = useAuth()
+  console.log('🚀 ~ id:', id)
+  console.log('🚀 ~ isEmail:', isEmail)
 
   const navigate = useNavigate()
 
@@ -45,6 +48,7 @@ const AuthOther = () => {
 
   const checkUser = (arr) => {
     const found = arr.some((user) => user.id === id)
+    console.log('🚀 ~ found:', found)
     setIsLoading(!found)
     setIsCheckingUser(false)
   }

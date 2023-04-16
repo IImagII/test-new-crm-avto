@@ -78,7 +78,7 @@ const AuthRegistration = () => {
             to={ROUTES.LOGIN}
             className="nav-link m-2 text-center text-decoration-underline"
           >
-            sing in
+            Sing in
           </Link>
         </div>
         <div className="d-grid gap-2">
@@ -89,13 +89,13 @@ const AuthRegistration = () => {
         <div className="d-grid mt-4">
           <a href="#" className="provider_button" onClick={handleAuthGoogle}>
             <FcGoogle className="provider_button_icon" />
-            Sign in with google
+            Sign in with Google
           </a>
         </div>
         <div className="d-grid mt-2">
           <a href="#" className="provider_button" onClick={handleAuthFacebook}>
             <FaFacebook className="provider_button_icon" />
-            Sign in with facebook
+            Sign in with Facebook
           </a>
         </div>
       </Form>
