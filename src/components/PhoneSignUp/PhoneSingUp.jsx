@@ -2,15 +2,16 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth'
 import { useState } from 'react'
 import { Alert, Button, Form } from 'react-bootstrap'
 import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { auth } from '../../firebase.config'
 import { setUser } from '../../store/slice/userSlice'
 import { ROUTES } from '../../utils/routes'
 
 import styles from './PhoneSingUp.module.scss'
+
+import 'react-phone-number-input/style.css'
 
 const PhoneSingUp = ({ setShowPhone }) => {
   const [number, setNumber] = useState('')
@@ -39,7 +40,7 @@ const PhoneSingUp = ({ setShowPhone }) => {
       return setError('Please enter a your Phone number!')
     try {
       const response = await setUpRecaptcha(number)
-      console.log('🚀 ~ response:', response)
+
       setConfirm(response)
       setIsCode(true)
     } catch (e) {

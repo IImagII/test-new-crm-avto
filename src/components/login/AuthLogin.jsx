@@ -4,16 +4,17 @@ import { Alert, Button, Form } from 'react-bootstrap'
 import { FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { FcPhone } from 'react-icons/fc'
-import 'react-phone-number-input/style.css'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { auth } from '../../firebase.config'
 import { setUser } from '../../store/slice/userSlice'
 import { ROUTES } from '../../utils/routes'
-import PhoneSingUp from '../PhoneSignUp/PhoneSingUp'
 import useProvider from '../hooks/use-provider'
 import { useValues } from '../hooks/use-values'
+import PhoneSingUp from '../phoneSignUp/PhoneSingUp'
+
+import 'react-phone-number-input/style.css'
 
 const AuthLogin = () => {
   const [values, setValues] = useValues()

@@ -8,14 +8,13 @@
     "<THIRD_PARTY_MODULES>",
     "^@/components/(.*)$",
     "^@/store/(.*)$",
-    "^@/styles/(.*)$",
     "^@/hooks/(.*)$",
     "^@/page/(.*)$",
     "^@/utils/(.*)$",
     "^../(.*)",
     "^./(.*)",
-    "^@/assets/(.*)$",
-    "(.scss)$"
+    "(.scss)$",
+    "(.css)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
